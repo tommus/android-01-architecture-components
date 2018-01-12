@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<eat-comment />
+	<string name="app_name">Android Architecture Components</string>
+	<string name="app_toolbar_title">Library</string>
+	<string name="title_authors">Authors</string>
+	<string name="title_publishing_houses">Publishing Houses</string>
+	<string name="title_covers">Covers</string>
+	<string name="title_books">Books</string>
+	<string name="menu_sort">Sort</string>
+	<string name="authors_list_empty_message">This place is empty\nright now.</string>
+	<string name="authors_list_empty_retry_button">Retry</string>
+</resources>

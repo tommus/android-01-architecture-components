@@ -1,0 +1,29 @@
+buildscript {
+    ext.kotlinVersion = "1.2.10"
+    ext.gradleVersion = "3.0.1"
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://maven.fabric.io/public" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "http://dl.bintray.com/geeksynergy/GeekSupport" }
+        maven { url "https://maven.fabric.io/public" }
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

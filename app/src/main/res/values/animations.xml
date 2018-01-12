@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<integer name="anim_scale_duration">125</integer>
+	<integer name="anim_scale_up_start_offset">225</integer>
+	<fraction name="anim_scale_max">100%</fraction>
+	<fraction name="anim_scale_min">95%</fraction>
+	<fraction name="anim_scale_pivot">50%p</fraction>
+
+	<integer name="anim_translate_duration">275</integer>
+	<integer name="anim_translate_start_offset">50</integer>
+	<fraction name="anim_translate_enter_destination">0%</fraction>
+	<fraction name="anim_translate_exit_source">0%</fraction>
+	<fraction name="anim_translate_behind_left">-100%</fraction>
+	<fraction name="anim_translate_behind_right">100%</fraction>
+
+	<integer name="anim_alpha_duration">325</integer>
+	<fraction name="anim_alpha_min">0.2</fraction>
+	<fraction name="anim_alpha_max">1.0</fraction>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="co.windly.aac.ui.main.covers.list.CoversListViewModel" />
+	</data>
+
+
+	<android.support.v4.widget.SwipeRefreshLayout
+		android:id="@+id/swipeRefresh"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:refreshing="@{viewModel.isLoading}">
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recyclerView"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:adapter="@{viewModel.coversObservableArrayList}"
+			tools:listitem="@layout/item_covers_list" />
+
+	</android.support.v4.widget.SwipeRefreshLayout>
+
+</layout>

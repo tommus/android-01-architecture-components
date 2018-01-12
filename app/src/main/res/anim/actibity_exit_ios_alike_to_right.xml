@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<set
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:fillAfter="true"
+	android:shareInterpolator="false">
+
+	<scale
+		android:duration="@integer/anim_scale_duration"
+		android:fromXScale="@fraction/anim_scale_max"
+		android:fromYScale="@fraction/anim_scale_max"
+		android:interpolator="@android:anim/accelerate_interpolator"
+		android:pivotX="@fraction/anim_scale_pivot"
+		android:pivotY="@fraction/anim_scale_pivot"
+		android:toXScale="@fraction/anim_scale_min"
+		android:toYScale="@fraction/anim_scale_min" />
+
+	<translate
+		android:duration="@integer/anim_translate_duration"
+		android:fromXDelta="@fraction/anim_translate_exit_source"
+		android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+		android:startOffset="@integer/anim_translate_start_offset"
+		android:toXDelta="@fraction/anim_translate_behind_right" />
+
+	<scale
+		android:duration="@integer/anim_scale_duration"
+		android:fromXScale="@fraction/anim_scale_min"
+		android:fromYScale="@fraction/anim_scale_min"
+		android:interpolator="@android:anim/accelerate_interpolator"
+		android:pivotX="@fraction/anim_scale_pivot"
+		android:pivotY="@fraction/anim_scale_pivot"
+		android:startOffset="@integer/anim_scale_up_start_offset"
+		android:toXScale="@fraction/anim_scale_max"
+		android:toYScale="@fraction/anim_scale_max" />
+
+	<alpha
+		android:duration="@integer/anim_alpha_duration"
+		android:fromAlpha="@fraction/anim_alpha_max"
+		android:interpolator="@android:anim/accelerate_interpolator"
+		android:toAlpha="@fraction/anim_alpha_min" />
+
+</set>

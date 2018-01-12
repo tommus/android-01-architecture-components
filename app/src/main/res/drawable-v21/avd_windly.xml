@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animated-vector
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:aapt="http://schemas.android.com/aapt"
+	android:drawable="@drawable/ic_windly">
+
+	<target android:name="first_part">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+				android:duration="250"
+				android:propertyName="fillAlpha"
+				android:valueFrom="0.0"
+				android:valueTo="1.0" />
+		</aapt:attr>
+	</target>
+
+	<target android:name="second_part">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+				android:duration="250"
+				android:propertyName="fillAlpha"
+				android:startOffset="250"
+				android:valueFrom="0.0"
+				android:valueTo="1.0" />
+		</aapt:attr>
+	</target>
+
+	<target android:name="third_part">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+				android:duration="250"
+				android:propertyName="fillAlpha"
+				android:startOffset="500"
+				android:valueFrom="0.0"
+				android:valueTo="1.0" />
+		</aapt:attr>
+	</target>
+
+	<target android:name="fourth_part">
+		<aapt:attr name="android:animation">
+			<objectAnimator
+				android:duration="250"
+				android:propertyName="fillAlpha"
+				android:startOffset="750"
+				android:valueFrom="0.0"
+				android:valueTo="1.0" />
+		</aapt:attr>
+	</target>
+
+</animated-vector>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+
+		<variable
+			name="viewModel"
+			type="co.windly.aac.ui.main.books.list.BooksListItemViewModel" />
+	</data>
+
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cardUseCompatPadding="true">
+
+		<android.support.constraint.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="16dp">
+
+			<TextView
+				android:id="@+id/title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@{viewModel.title}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toStartOf="@+id/deleteBook"
+				app:layout_constraintHorizontal_bias="0"
+				app:layout_constraintHorizontal_chainStyle="packed"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				tools:text="Game of Throne" />
+
+			<ImageButton
+				android:id="@+id/deleteBook"
+				style="@style/Widget.AppCompat.ActionButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:contentDescription="@null"
+				android:onClick="@{() -> viewModel.onDeleteClick()}"
+				android:visibility="@{!viewModel.isDeleting}"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toBottomOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:srcCompat="@drawable/ic_clear_black_24dp" />
+
+			<ProgressBar
+				android:id="@+id/deleteProgress"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:padding="@dimen/size_p10"
+				android:visibility="@{viewModel.isDeleting}"
+				app:layout_constraintBottom_toBottomOf="@+id/deleteBook"
+				app:layout_constraintEnd_toEndOf="@+id/deleteBook"
+				app:layout_constraintStart_toStartOf="@+id/deleteBook"
+				app:layout_constraintTop_toTopOf="@+id/deleteBook"
+				tools:visibility="gone" />
+
+		</android.support.constraint.ConstraintLayout>
+
+	</android.support.v7.widget.CardView>
+
+</layout>
