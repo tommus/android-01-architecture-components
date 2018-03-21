@@ -2,6 +2,8 @@ package co.windly.aac
 
 import android.app.Activity
 import android.app.Application
+import android.content.Context
+import android.support.multidex.MultiDex
 import co.windly.aac.utilities.AacLogger
 import co.windly.aac.utilities.di.DaggerApplicationComponent
 import dagger.android.AndroidInjector
@@ -14,6 +16,11 @@ class AacApplication : Application(), HasActivityInjector {
 
   @Inject
   lateinit var injector: DispatchingAndroidInjector<Activity>
+
+  override fun attachBaseContext(base: Context?) {
+    super.attachBaseContext(base)
+    MultiDex.install(this)
+  }
 
   override fun onCreate() {
     super.onCreate()

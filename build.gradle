@@ -1,27 +1,14 @@
 buildscript {
-    ext.kotlinVersion = "1.2.21"
-    ext.gradleVersion = "3.0.1"
-    repositories {
-        google()
-        jcenter()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://maven.fabric.io/public" }
-    }
+    apply from: "dependencies.gradle"
+    addRepos(repositories)
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradleVersion"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath deps.build.android_gradle_plugin
+        classpath deps.kotlin.plugin
     }
 }
 
 allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "http://dl.bintray.com/geeksynergy/GeekSupport" }
-        maven { url "https://maven.fabric.io/public" }
-        maven { url "https://jitpack.io" }
-    }
+    addRepos(repositories)
 }
 
 task clean(type: Delete) {

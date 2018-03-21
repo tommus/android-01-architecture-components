@@ -1,5 +1,6 @@
-package co.windly.aac.database.daos;
+package co.windly.aac.test.database.daos;
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.SmallTest;
@@ -10,19 +11,18 @@ import co.windly.aac.data.database.models.covers.CoverEntity;
 import java.util.List;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.nullValue;
+import static com.google.common.truth.Truth.assertThat;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class CoversDaoTest {
 
-  //@Rule
-  //public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+  @Rule
+  public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
   private AndroidDatabase database;
 
@@ -48,7 +48,7 @@ public class CoversDaoTest {
     final List<CoverEntity> history = coversDao.getListOfAllCovers();
 
     // Then.
-    assertThat(history, nullValue());
-    assertThat(history, empty());
+    assertThat(history).isNotNull();
+    assertThat(history).isEmpty();
   }
 }

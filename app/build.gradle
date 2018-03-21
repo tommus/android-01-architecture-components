@@ -4,17 +4,16 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 
 android {
-  compileSdkVersion 27
+  compileSdkVersion deps.build_versions.compile_sdk
 
   defaultConfig {
-    minSdkVersion 21
-    targetSdkVersion 27
+    minSdkVersion deps.build_versions.min_sdk
+    targetSdkVersion deps.build_versions.target_sdk
     versionCode 1
     versionName "1.0"
-    multiDexEnabled true
     applicationId "co.windly.aac"
+    multiDexEnabled true
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    testInstrumentationRunnerArguments disableAnalytics: "true"
   }
 
   buildTypes {
@@ -46,90 +45,77 @@ android {
   }
 }
 
-ext {
-  supportLibVersion = "27.1.0"
-  aacVersion = "1.1.0"
-  roomVersion = "1.1.0-alpha3"
-  daggerVersion = "2.13"
-  retrofitVersion = "2.3.0"
-  prefsVersion = "1.2.2"
-  glideVersion = "4.4.0"
-  fastAdapterVersion = "3.2.4@aar"
-  truthVersion = "0.39"
-  atslRulesVersion = "1.0.1"
-  archTestingVersion = "1.1.0"
-}
-
 dependencies {
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
+  implementation deps.kotlin.sdtlib
+
+  // Dex.
+  implementation deps.support.multidex
 
   // UI.
-  implementation "com.android.support:appcompat-v7:$supportLibVersion"
-  implementation "com.android.support:cardview-v7:$supportLibVersion"
-  implementation "com.android.support:design:$supportLibVersion"
-  implementation "com.android.support.constraint:constraint-layout:1.0.2"
-
-  // List.
-  implementation("com.mikepenz:fastadapter:$fastAdapterVersion") { transitive = true }
-  implementation "com.mikepenz:fastadapter-commons:$fastAdapterVersion"
-  implementation "com.mikepenz:fastadapter-extensions:$fastAdapterVersion"
+  implementation deps.support.v7
+  implementation deps.support.card_view_v7
+  implementation deps.support.design
+  implementation deps.support.constraint
+  implementation deps.support.recycler_view
 
   // Dependency injection.
-  implementation "com.google.dagger:dagger:$daggerVersion"
-  kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-  kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-  compile "com.google.dagger:dagger-android-support:$daggerVersion"
+  implementation deps.dagger.runtime
+  implementation deps.dagger.android_support
+  kapt deps.dagger.compiler
+  kapt deps.dagger.processor
+  compileOnly deps.javax
 
-  provided "org.glassfish:javax.annotation:10.0-b28"
-
-  // RxJava.
-  implementation "io.reactivex.rxjava2:rxjava:2.1.9"
-  implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
-  implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+  // Reactive Extensions.
+  implementation deps.rx.java
+  implementation deps.rx.kotlin
+  implementation deps.rx.android
 
   // Networking.
-  implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-  implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-  implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion"
-  implementation "com.squareup.okhttp3:logging-interceptor:3.9.1"
+  implementation deps.retrofit.retrofit
+  implementation deps.retrofit.rxjava2
+  implementation deps.retrofit.jackson
+  implementation deps.retrofit.logging
 
   // Utils.
-  implementation "com.github.bumptech.glide:glide:$glideVersion"
-  kapt "com.github.bumptech.glide:compiler:$glideVersion"
-  implementation "org.jraf:prefs:$prefsVersion"
-  kapt "org.jraf:prefs-compiler:$prefsVersion"
-  implementation "joda-time:joda-time:2.9.9"
-  implementation "org.apache.commons:commons-lang3:3.7"
-  implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
-  implementation "com.jakewharton.timber:timber:4.6.0"
+  implementation deps.glide
+  kapt deps.glide_compiler
+  implementation deps.jraf_prefs
+  kapt deps.jraf_prefs_compiler
+  implementation deps.joda_time
+  implementation deps.commons_lang
 
   // Mapping.
-  implementation "org.modelmapper:modelmapper:1.1.2"
+  implementation deps.model_mapper
 
   // Data Binding.
-  kapt "com.android.databinding:compiler:$gradleVersion"
+  kapt deps.databinding
 
   // Lifecycle.
-  implementation "android.arch.lifecycle:runtime:$aacVersion"
-
-  // Live Data & View Model.
-  implementation "android.arch.lifecycle:extensions:$aacVersion"
-
-  // Live Data & Reactive Streams.
-  implementation "android.arch.lifecycle:reactivestreams:$aacVersion"
+  implementation deps.lifecycle.runtime
+  implementation deps.lifecycle.extensions
+  implementation deps.lifecycle.reactive_streams
 
   // Room Database.
-  implementation "android.arch.persistence.room:runtime:$roomVersion"
-  implementation "android.arch.persistence.room:rxjava2:$roomVersion"
-  kapt "android.arch.persistence.room:compiler:$roomVersion"
+  implementation deps.room.runtime
+  implementation deps.room.rxjava2
+  kapt deps.room.compiler
 
   // Paging.
-  implementation "android.arch.paging:runtime:1.0.0-alpha4-1"
+  implementation deps.paging
+
+  // Debug.
+  implementation deps.stetho
+  implementation deps.timber
 
   // Instrumented & integration tests.
-  androidTestCompile "org.hamcrest:hamcrest-library:1.3"
-  androidTestCompile "com.android.support.test:runner:$atslRulesVersion"
-  androidTestCompile "com.android.support.test:rules:$atslRulesVersion"
-  androidTestCompile "com.android.support:support-annotations:$supportLibVersion"
-//  androidTestImplementation "android.arch.core:core-testing:$archTestingVersion"
+  androidTestImplementation deps.arch_core.testing
+  androidTestImplementation deps.espresso.core
+  androidTestImplementation deps.atsl.runner
+  androidTestImplementation deps.atsl.rules
+  androidTestImplementation deps.test.truth
+}
+
+android.testVariants.all { variant ->
+  variant.getCompileConfiguration().exclude group: "com.android.support", module: "support-annotations"
+  variant.getRuntimeConfiguration().exclude group: "com.android.support", module: "support-annotations"
 }
