@@ -24,11 +24,11 @@ class BooksListAdapter : RecyclerView.Adapter<BaseViewHolder> {
     this.booksList = mutableListOf(*booksList.toTypedArray())
   }
 
-  override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
-    holder?.onBind(position)
+  override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+    holder.onBind(position)
   }
 
-  override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
     val inflater = LayoutInflater.from(parent?.context)
 
     return when (viewType) {
